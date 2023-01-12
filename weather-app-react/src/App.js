@@ -16,7 +16,7 @@ function App() {
         <div className="image-slider">
         <img src={weather} /> 
         </div>
-        <h1 className="temp">30F</h1>
+        <h1 className="text-yellow-700">30F</h1>
         <h2 className="tag">Clear</h2>
     </div>
     {/* <!-- ---------bottom part------- --> */}
