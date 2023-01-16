@@ -1,10 +1,24 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 
-
 function App() {
+  const [data, setData] = useState({})
+  const [location, setLocation] = useState('') 
+
   // API url
-  //const url ="https://api.openweathermap.org/data/2.5/weather?q=dallas&appid=e1c10de39471b526a19ff0ad309782c9"
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=e1c10de39471b526a19ff0ad309782c9`
+
+  //function
+  const searchLocation = (event) => {
+    if (event.key === 'Enter') {
+      axios.get(url).then((response) => {
+        setData(response.data)
+        console.log(response.data)
+      })
+      setLocation('')
+    }
+  }
+
   return (
     <body class="bg-gradient-to-br from-blue-900 to-cyan-700 grid place-items-center m-0 h-screen">
     <div className="m-1 grid place-items-center" >
@@ -17,13 +31,15 @@ function App() {
     
         {/* <!-- ------search bar------ --> */}
         
-        <input className=" mt-5 m-2 px-8 p-3 w-1/4 bg-amber-200 border-none rounded-full font-inter text-lg text-blue-800" type="text" placeholder="Enter Location"></input>
+        <input className=" mt-5 m-2 px-8 p-3 w-1/4 bg-amber-200 border-none rounded-full font-inter text-lg text-blue-800" type="text" value={location}
+          onChange={event => setLocation(event.target.value)}
+          onKeyPress={searchLocation} placeholder="Enter Location" />
         
         {/* <!-- --------middle section----- --> */}
         <div className="m-3 p-3 w-auto rounded-lg  grid place-items-center text-white font-nunito">
-        <span class="material-symbols-outlined">location_on</span><p className=" text-3xl  p-1 m-1 font-medium ">Dallas</p>
-            <h1 className="text-5xl p-1">30<span>&#176;</span>C</h1>
-            <h2 className="text-xl p-1">Clear</h2>
+        <span class="material-symbols-outlined">location_on</span><p className=" text-3xl  p-1 m-1 font-medium ">{data.name}</p>
+        {data.main ? <h1 className="text-5xl p-1">{data.main.temp.toFixed()}°F</h1> : null}
+        {data.weather ? <h2 className="text-xl p-1">{data.weather[0].main}</h2> : null}
         </div>
         {/* <!-- ---------bottom part------- --> */}
         <div className="w-2/5 grid place-items-center font-inter">
@@ -31,8 +47,8 @@ function App() {
                 <div className='m-0 p-2 w-4/5 text-white'>
                     <p className="type">Feels Like</p>
                 </div>
-                <div className='m-0 p-2 rounded-r-sm bg-white w-1/5 flex justify-center'>
-                    <p className="font-semibold text-blue-900">30<span>&#176;</span>C</p>
+                <div className='m-0 p-2 rounded-r-sm bg-white w-2/5 flex justify-center'>
+                {data.main ? <p className="font-semibold text-blue-900">{data.main.feels_like.toFixed()}°F</p> : null}
                 </div>
             </div>
 
@@ -40,8 +56,8 @@ function App() {
                 <div className='m-0 p-2 w-4/5 text-white'>
                     <p className="type">Humidity</p>
                 </div>
-                <div className='m-0 p-2 rounded-r-sm bg-white w-1/5 flex justify-center'>
-                    <p className="font-semibold text-blue-900">72%</p>
+                <div className='m-0 p-2 rounded-r-sm bg-white w-2/5 flex justify-center'>
+                {data.main ? <p className="font-semibold text-blue-900">{data.main.humidity}%</p> : null}
                 </div>
             </div>
 
@@ -49,8 +65,8 @@ function App() {
                 <div className='m-0 p-2 w-4/5 text-white'>
                     <p className="type">Wind Speed</p>
                 </div>
-                <div className='m-0 p-2 rounded-r-sm bg-white w-1/5 flex justify-center'>
-                    <p className="font-semibold text-blue-900">2MPH</p>
+                <div className='m-0 p-2 rounded-r-sm bg-white w-2/5 flex justify-center'>
+                {data.main ? <p className="font-semibold text-blue-900">{data.wind.speed.toFixed()} MPH</p> : null}
                 </div>
             </div>
         </div>
