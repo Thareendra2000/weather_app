@@ -6,7 +6,7 @@ function App() {
   // API url
   //const url ="https://api.openweathermap.org/data/2.5/weather?q=dallas&appid=e1c10de39471b526a19ff0ad309782c9"
   return (
-    <body class=" bg-blue-700 grid place-items-center">
+    <body class="bg-gradient-to-br from-blue-900 to-cyan-700 grid place-items-center m-0">
     <div className="text-white m-0 p-0 border-b max-w-xl " >
         {/* <!-- ------search bar------ --> */}
         <div className="p-8">
@@ -14,7 +14,9 @@ function App() {
         </div>
         {/* <!-- --------middle section----- --> */}
         <div className="m-0 p-0  grid place-items-center">
-            <p className=" text-2xl p-1 m-1">Dallas</p>
+            <p className=" text-2xl font-sans p-1 m-1">Dallas</p>
+            <p className=" text-2xl font-nunito p-1 m-1">Weatherly</p>
+            <p className=" text-2xl font-inter p-1 m-1">Dallas</p>
             <div className="p-16"><img src={weather} /></div>
             <h1 className="text-5xl p-1">30F</h1>
             <h2 className="text-xl p-3">Clear</h2>
