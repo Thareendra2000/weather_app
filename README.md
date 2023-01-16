@@ -71,4 +71,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 # Weather app using react and a public API
 ## API used: 
-![weather-app (2)](https://user-images.githubusercontent.com/97722096/212554758-ec217e6c-ca21-42a1-bdd2-1a3b010d42ba.png)
+![weathely](https://user-images.githubusercontent.com/97722096/212614463-b0f34b79-21aa-4b37-8d99-903d91b6ad53.PNG)
